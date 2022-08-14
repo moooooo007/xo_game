@@ -23,7 +23,7 @@ class Button extends StatelessWidget {
              ButtonClick(index);
             },
 
-            child: Text("$namebutton",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: Colors.deepOrange),),
+            child: Text("$namebutton",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold,color: namebutton == "X" ?Colors.deepOrange:Colors.white),),
 
           ),
     ),

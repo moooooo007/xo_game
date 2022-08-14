@@ -2,23 +2,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:xo_game/XO_Play/Button.dart';
 import 'package:xo_game/XO_Play/resetbutton.dart';
+
 class PlayScreen extends StatefulWidget {
+
     @override
   State<PlayScreen> createState() => _PlayScreenState();
 }
 
 class _PlayScreenState extends State<PlayScreen> {
+  static var RouteName = "PlayScreen";
   List <String> symbol = ["","","","","","","","",""];
   int player1 = 0;
   int player2 = 0;
-  @override
+  String? playername1;
+  String? playername2;
+   @override
   Widget build(BuildContext context) {
+     var args = ModalRoute.of(context)?.settings.arguments as playarscreengs ;
+     playername1 = args.player1name;
+     playername2 = args.player2name;
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
        appBar: AppBar(
           backgroundColor: Colors.deepOrange,
-          title: Text("X_O Play",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+          title: const Text("X_O Play",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
           centerTitle: true,
         ),
         body: (
@@ -28,7 +36,7 @@ class _PlayScreenState extends State<PlayScreen> {
           flex: 1,
           child: Container(
             height: 40,
-            margin: EdgeInsets.all(5),
+            margin: const EdgeInsets.all(5),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: Colors.black,
@@ -38,10 +46,10 @@ class _PlayScreenState extends State<PlayScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
 
-              Text("Player 01",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white,),textAlign: TextAlign.center,),
-              Text("$player1",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.deepOrange),textAlign: TextAlign.center,),
-              Text("/ Player 02",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
-              Text("$player2",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.deepOrange),textAlign: TextAlign.center,)
+              Text("$playername1",style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white,),textAlign: TextAlign.center,),
+              Text("$player1",style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.deepOrange),textAlign: TextAlign.center,),
+              Text("/ $playername2",style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),textAlign: TextAlign.center,),
+              Text("$player2",style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.deepOrange),textAlign: TextAlign.center,)
 
             ],
       ),
@@ -51,7 +59,7 @@ class _PlayScreenState extends State<PlayScreen> {
           flex: 1,
               child: Container(
                 height: 40,
-                margin: EdgeInsets.all(5),
+                margin: const EdgeInsets.all(5),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Colors.deepOrange,
@@ -66,11 +74,41 @@ class _PlayScreenState extends State<PlayScreen> {
                 ),
               ),
             ),
+        Expanded(child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              width: 100,
+              height: 80,
+              padding: const EdgeInsets.all(20),
+              child: Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    onPrimary: Colors.white,
+                    primary: Colors.deepOrange,
+                    minimumSize: const Size(330, 70),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(30),
+                      ),
+                    ),
+                  ),
+                  onPressed: (){
+                    Navigator.pushNamed(context, "login",
+                        arguments:playarscreengs(player1name: "", player2name: "") );
+                  },
+                  child: const Text("New Game",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                ),
+              ),
+            ),
+          ],
+        )),
+
         Expanded(
               flex: 2,
               child: Container(
                 height: 40,
-                margin: EdgeInsets.all(5),
+                margin: const EdgeInsets.all(5),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Colors.deepOrange,
@@ -90,7 +128,7 @@ class _PlayScreenState extends State<PlayScreen> {
           flex: 2,
               child: Container(
                 height: 40,
-                margin: EdgeInsets.all(5),
+                margin: const EdgeInsets.all(5),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Colors.deepOrange,
@@ -111,7 +149,7 @@ class _PlayScreenState extends State<PlayScreen> {
           flex: 2,
               child: Container(
                 height: 40,
-                margin: EdgeInsets.all(5),
+                margin: const EdgeInsets.all(5),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                     color: Colors.deepOrange,
@@ -127,6 +165,7 @@ class _PlayScreenState extends State<PlayScreen> {
                 ),
               ),
             ),
+
           ],
         )
         ),
@@ -199,5 +238,11 @@ class _PlayScreenState extends State<PlayScreen> {
     counter=0;
     setState(() {
     });
+
   }
+}
+class playarscreengs{
+   String player1name;
+   String player2name;
+  playarscreengs({required this.player1name,required this.player2name});
 }
