@@ -58,7 +58,7 @@ class _PlayScreenState extends State<PlayScreen> {
         Expanded(
           flex: 1,
               child: Container(
-                height: 40,
+
                 margin: const EdgeInsets.all(5),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
@@ -74,35 +74,6 @@ class _PlayScreenState extends State<PlayScreen> {
                 ),
               ),
             ),
-        Expanded(child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              width: 100,
-              height: 80,
-              padding: const EdgeInsets.all(20),
-              child: Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    onPrimary: Colors.white,
-                    primary: Colors.deepOrange,
-                    minimumSize: const Size(330, 70),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
-                      ),
-                    ),
-                  ),
-                  onPressed: (){
-                    Navigator.pushNamed(context, "login",
-                        arguments:playarscreengs(player1name: "", player2name: "") );
-                  },
-                  child: const Text("New Game",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                ),
-              ),
-            ),
-          ],
-        )),
 
         Expanded(
               flex: 2,
@@ -166,6 +137,29 @@ class _PlayScreenState extends State<PlayScreen> {
               ),
             ),
 
+            Container(
+              width: double.infinity,
+              height: 100,
+              padding: const EdgeInsets.all(20),
+
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.white,
+                  primary: Colors.deepOrange,
+                  minimumSize: const Size(330, 70),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
+                    ),
+                  ),
+                ),
+                onPressed: (){
+                  Navigator.pushNamed(context, "login",
+                      arguments:playarscreengs(player1name: "", player2name: "") );
+                },
+                child: const Text("New Game",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              ),
+            ),
           ],
         )
         ),

@@ -74,24 +74,22 @@ class login extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.all(20),
-                child: Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.white,
-                      primary: Colors.deepOrange,
-                      minimumSize: const Size(330, 70),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
-                        ),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    onPrimary: Colors.white,
+                    primary: Colors.deepOrange,
+                    minimumSize: const Size(330, 70),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(30),
                       ),
                     ),
-                    onPressed: (){
-                      Navigator.pushNamed(context, "PlayScreen",
-                          arguments:playarscreengs(player1name: players1, player2name: players2) );
-                    },
-                    child: Text("Start",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                   ),
+                  onPressed: (){
+                    Navigator.pushNamed(context, "PlayScreen",
+                        arguments:playarscreengs(player1name: players1, player2name: players2) );
+                  },
+                  child: Text("Start",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                 ),
               ),
 
